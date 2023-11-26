@@ -25,7 +25,7 @@ class User
             return $response;
         } else {
 
-        $userModel = userModel::create($request->all());
+            $userModel = userModel::create($request->all());
 
             if ($userModel) {
 
