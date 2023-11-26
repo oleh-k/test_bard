@@ -13,6 +13,10 @@ class AuthController extends Controller
 
         $user = User::register($request);
 
+        if (!$user['success']) {
+            return response($user, 400);
+        }
+
         return $user;
     }
 }
