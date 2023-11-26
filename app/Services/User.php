@@ -25,7 +25,11 @@ class User
             return $response;
         } else {
 
-            $userModel = userModel::create($request->all());
+            $userModel = userModel::create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => bcrypt($request['password'])
+            ]);
 
             if ($userModel) {
 
