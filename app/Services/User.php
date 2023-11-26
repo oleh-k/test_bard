@@ -1,6 +1,6 @@
 <?php
 
-namespace App\User;
+namespace App\Services;
 
 use App\Models\User as userModel;
 use Illuminate\Support\Facades\Validator;
