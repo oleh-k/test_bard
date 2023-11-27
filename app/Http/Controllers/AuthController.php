@@ -31,5 +31,14 @@ class AuthController extends Controller
         return $user;
     }
 
+    public function logout()
+    {
+        $user = User::logout();
+
+        if (!$user['success']) {
+            return response($user, 400);
+        }
+
+        return $user;
     }
 }

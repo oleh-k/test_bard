@@ -32,7 +32,7 @@ class User
                 'password' => bcrypt($request['password'])
             ]);
 
-            $token = $userModel->createToken($request['password'].'myapp_bard')->plainTextToken;
+            $token = $userModel->createToken($request['password'] . 'myapp_bard')->plainTextToken;
 
             if ($userModel) {
 
@@ -100,4 +100,9 @@ class User
         }
     }
 
+    public static function logout(): array
+    {
+        auth('sanctum')->user()->tokens()->delete();
+        return ['success' => true];
+    }
 }
