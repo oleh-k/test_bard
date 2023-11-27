@@ -20,7 +20,16 @@ class AuthController extends Controller
         return $user;
     }
 
-    public function logout() {
-        return response(["message" => "logout"], 200);
+    public function login(Request $request)
+    {
+        $user = User::login($request);
+
+        if (!$user['success']) {
+            return response($user, 400);
+        }
+
+        return $user;
+    }
+
     }
 }
