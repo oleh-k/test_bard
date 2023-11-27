@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User\User;
+use App\Services\User;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -18,5 +18,9 @@ class AuthController extends Controller
         }
 
         return $user;
+    }
+
+    public function logout() {
+        return response(["message" => "logout"], 200);
     }
 }

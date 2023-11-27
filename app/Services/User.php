@@ -1,6 +1,6 @@
 <?php
 
-namespace App\User;
+namespace App\Services;
 
 use App\Models\User as userModel;
 use Illuminate\Support\Facades\Validator;
@@ -25,12 +25,19 @@ class User
             return $response;
         } else {
 
-        $userModel = userModel::create($request->all());
+            $userModel = userModel::create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => bcrypt($request['password'])
+            ]);
+
+            $token = $userModel->createToken($request['password'].'myapp_bard')->plainTextToken;
 
             if ($userModel) {
 
                 $response = [
                     "success" => true,
+                    "token" => $token,
                     "message" => $userModel
                 ];
                 return $response;
