@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Validator;
+use Pj8912\PhpBardApi\Bard as PhpBardApiBard;
 
 class Bard
 {
@@ -22,9 +23,12 @@ class Bard
             return $response;
         } else {
 
+            $bard = new PhpBardApiBard();
+            $result = $bard->get_answer($request['question']);
+
             $response = [
                 "success" => true,
-                "message" => $request['question']
+                "message" => $result
             ];
             return $response;
         }
